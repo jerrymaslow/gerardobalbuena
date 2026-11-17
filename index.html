@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 1 - Motor Financiero Frontend</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #f4f4f9; color: #333; }
+        h1 { color: #0066cc; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        button { background: #0066cc; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0055b3; }
+        pre { background: #eee; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Reto 1: Lógica y Arquitectura Frontend</h1>
+        <p>Abre la consola de tu navegador (F12 o Clic derecho -> Inspeccionar -> Consola) para ver las pruebas del motor financiero en ejecución.</p>
+        <button onclick="ejecutarPruebas()">Ejecutar Simulación de Prueba</button>
+    </div>
+
+    <div class="card">
+        <h3>Resultado de la última simulación:</h3>
+        <pre id="resultado">Haz clic en el botón para ejecutar una simulación.</pre>
+    </div>
+
+    <!-- Enlazamos nuestro motor financiero -->
+    <script src="motorFinanciero.js"></script>
+    <script>
+        function ejecutarPruebas() {
+            try {
+                // Realizamos una simulación de ejemplo
+                const res = MotorFinanciero.calcularInteresCompuesto({
+                    capitalInicial: 6000,
+                    aportacionMensual: 250,
+                    tasaInteresAnual: 5.5,
+                    anos: 10
+                });
+
+                document.getElementById('resultado').textContent = JSON.stringify(res, null, 2);
+                console.log("Simulación ejecutada con éxito:", res);
+                console.table(MotorFinanciero.obtenerResumenHistorico());
+            } catch (error) {
+                console.error("Error en el cálculo:", error.message);
+            }
+        }
+    </script>
+</body>
+</html>
